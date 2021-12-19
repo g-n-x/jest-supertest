@@ -1,2 +1,2 @@
 # jest-test
-practicing tdd
+practicing tdd with supertest and jest
