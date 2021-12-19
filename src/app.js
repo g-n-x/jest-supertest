@@ -1,19 +1,17 @@
-import express, { Express } from 'express';
-import routes from './routes';
+const express = require('express');
+const routes = require('./routes');
 
 class App {
-    public app: Express;
-
     constructor() {
         this.app = express();
         this.app.use(routes);
     }
 
-    listen(port: number) {
+    listen(port) {
         this.app.listen(port, '0.0.0.0', () => {
             console.log(`listening at 0.0.0.0:${port}`);
         });
     }
 }
 
-export default new App();
+module.exports = App
