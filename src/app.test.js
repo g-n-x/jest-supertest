@@ -1,28 +1,22 @@
-const Stack = require('./utils/Stack');
+const request = require('supertest')
+const App = require('./app')
 
-describe('Todos API', () => {
-
-    let stack = new Stack();
-
-    beforeEach(() => {
-        stack = new Stack();
-    })
-    
-    it('is created empty', () => {
-        expect(stack.top).toBe(-1);
-        expect(stack.items).toEqual({});
+describe('GET /', () => {
+    const app = new App()
+    it('should return 200', function (done) {
+        request(app.server).get('/')
+            .expect(200)
+            .end(done)
     });
+});
 
-    it('can push to the top', () => {
-        stack.push('🥑');
-        expect(stack.top).toBe(0);
-        expect(stack.peek).toBe('🥑');
-    });
-
-    it('can pop off', () => {
-        stack.push('👍');
-        stack.pop();
-        expect(stack.peek).toBe(undefined);
-        expect(stack.top).toBe(-1);
+describe('POST /users', () => {
+    const app = new App()
+    it('should return json 200', function (done) {
+        request(app.server).post('/users')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end(done)
     });
 });

@@ -3,12 +3,12 @@ const routes = require('./routes');
 
 class App {
     constructor() {
-        this.app = express();
-        this.app.use(routes);
+        this.server = express();
+        this.server.use(routes);
     }
 
     listen(port) {
-        this.app.listen(port, '0.0.0.0', () => {
+        this.server.listen(port, '0.0.0.0', () => {
             console.log(`listening at 0.0.0.0:${port}`);
         });
     }
